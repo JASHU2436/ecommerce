@@ -12,10 +12,42 @@ export default function AddProduct() {
     async function addProduct(e){
         e.preventDefault()
         const newProduct={
-            name,price,description,category,stock,role
+            name,price,description,category,stock:Number(stock),role
         }
-        axios.post("",newProduct)
+        axios.post("http://localhost:4000/api/product/add",newProduct)
+          .then((res)=>{
+            console.log(res)
+            if(res.status==200){
+              alert("Product added successfull")
+              navigate("/")
+            }
+          })
+          .catch((err)=>{
+            alert(err.response.data.message)
+          })
     }
+    function addToCart(productId) {
+  const userId = localStorage.getItem("userId")
+
+  if (!userId) {
+    alert("Login first")
+    navigate("/login")
+    return
+  }
+
+  axios.post(
+    "http://localhost:4000/api/cart/add",
+    { productId, quantity: 1 },
+    { params: { userId } }
+  )
+  .then(() => {
+    navigate("/cart")   // ✅ unconditional redirect
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
 
     return (
         <div className='container mt-4'>
@@ -29,7 +61,7 @@ export default function AddProduct() {
 
             <div className='mb-3'>
               <label className="form-label">Price </label>
-              <input type="email" className="form-control" name="price" value={price} placeholder="Ex:****" onChange={(e)=>setPrice(e.target.value)}/>
+              <input type="text" className="form-control" name="price" value={price} placeholder="Ex:****" onChange={(e)=>setPrice(e.target.value)}/>
             </div>
             <div className='mb-3'>
               <label className="form-label">Description </label>
