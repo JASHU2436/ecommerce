@@ -18,7 +18,7 @@ export default function Register() {
     let newUser = { name, email, mobile: Number(mobile), password, address };
 
     axios
-      .post("http://localhost:4000/api/create-user", newUser)
+      .post("https://ecommerce-50gq.onrender.com/api/create-user", newUser)
       .then((res) => {
         if (res.data.status === 201) {
           alert("Register successful");

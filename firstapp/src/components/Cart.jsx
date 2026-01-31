@@ -7,7 +7,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (userId) {
-      axios.get(`http://localhost:4000/api/cart?userId=${userId}`)
+      axios.get(`https://ecommerce-50gq.onrender.com/api/cart?userId=${userId}`)
         .then(res => setCartItems(res.data.items || []))
         .catch(err => console.error("Cart fetch error:", err));
     }

@@ -14,7 +14,7 @@ export default function AddProduct() {
         const newProduct={
             name,price,description,category,stock:Number(stock),role
         }
-        axios.post("http://localhost:4000/api/product/add",newProduct)
+        axios.post("https://ecommerce-50gq.onrender.com/api/product/add",newProduct)
           .then((res)=>{
             console.log(res)
             if(res.status==200){
@@ -36,7 +36,7 @@ export default function AddProduct() {
   }
 
   axios.post(
-    "http://localhost:4000/api/cart/add",
+    "https://ecommerce-50gq.onrender.com/api/cart/add",
     { productId, quantity: 1 },
     { params: { userId } }
   )

@@ -27,7 +27,7 @@ export default function Home() {
       return
     }
 
-    axios.post("http://localhost:4000/api/cart/add",
+    axios.post("https://ecommerce-50gq.onrender.com/api/cart/add",
       { productId, quantity: 1 },
       { params: { userId } }
     )
@@ -60,7 +60,7 @@ export default function Home() {
   }
 
   async function fetchProducts() {
-    axios.get("http://localhost:4000/api/product")
+    axios.get("https://ecommerce-50gq.onrender.com/api/product")
       .then((res) => {
         if (res.status === 200) {
           setProducts(res.data)
